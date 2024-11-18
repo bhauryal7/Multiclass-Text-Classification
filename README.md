@@ -23,7 +23,7 @@ The results of each model on the dataset are as follows:
 | Multinomial Naive Bayes | 78.25% |
 | Stochastic Gradient Descent | 79.11% |
 | Randomforest | 73.7% |
-| XGBoost | 65.78 |
+| XGBoost | 65.78% |
 | RNN | 62.3% |
 | GRU | 62.3% |
 | LSTM | 72% |
