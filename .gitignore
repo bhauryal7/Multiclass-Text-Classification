@@ -93,3 +93,4 @@ data.csv
 local_s3/
 data/
 models/
+cred.txt
