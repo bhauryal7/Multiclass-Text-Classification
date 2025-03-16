@@ -91,6 +91,6 @@ target/
 Data-reduced.xlsx
 data.csv
 local_s3/
-data/
+/data/
 models/
 cred.txt
