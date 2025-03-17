@@ -35,6 +35,15 @@ jobs:
             data/
             notebooks/data.csv   
 
+      - name: Download dataset artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: my-artifacts
+          path: .
+      
+      - name: debug: List files
+        run: ls -R
+
       - name: run pipeline
         # env:
           # CAPSTONE_TEST: ${{ secrets.CAPSTONE_TEST }}
