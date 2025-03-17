@@ -35,6 +35,10 @@ jobs:
             data/
             notebooks/data.csv   
 
+      - name: Debug uploaded artifacts
+        run: |
+          ls -R
+
       - name: Download dataset artifacts
         uses: actions/download-artifact@v4
         with:
