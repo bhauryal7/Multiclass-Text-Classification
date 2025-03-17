@@ -32,8 +32,8 @@ jobs:
         with:
           name: my-artifacts
           path: |
-            data/
-            notebooks/data.csv   
+            ./data/
+            ./notebooks/data.csv   
 
       - name: Debug uploaded artifacts
         run: |
