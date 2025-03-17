@@ -41,7 +41,7 @@ jobs:
           name: my-artifacts
           path: .
       
-      - name: debug: List files
+      - name: Debug: List files
         run: ls -R
 
       - name: run pipeline
