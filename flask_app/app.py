@@ -70,27 +70,27 @@ def normalize_text(text):
     return text
 
 # Below code block is for local use
-# -------------------------------------------------------------------------------------
-mlflow.set_tracking_uri('https://dagshub.com/bhauryal7/Multiclass-Text-Classification.mlflow')
-dagshub.init(repo_owner='bhauryal7', repo_name='Multiclass-Text-Classification', mlflow=True)
-# -------------------------------------------------------------------------------------
-
-# # Below code block is for production use
 # # -------------------------------------------------------------------------------------
-# # Set up DagsHub credentials for MLflow tracking
-# dagshub_token = os.getenv("CAPSTONE_TEST")
-# if not dagshub_token:
-#     raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
-
-# os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
-# os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
-
-# dagshub_url = "https://dagshub.com"
-# repo_owner = "vikashdas770"
-# repo_name = "YT-Capstone-Project"
-# # Set up MLflow tracking URI
-# mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+# mlflow.set_tracking_uri('https://dagshub.com/bhauryal7/Multiclass-Text-Classification.mlflow')
+# dagshub.init(repo_owner='bhauryal7', repo_name='Multiclass-Text-Classification', mlflow=True)
 # # -------------------------------------------------------------------------------------
+
+# Below code block is for production use
+# -------------------------------------------------------------------------------------
+# Set up DagsHub credentials for MLflow tracking
+dagshub_token = os.getenv("text-classify-food")
+if not dagshub_token:
+    raise EnvironmentError("text-classify-food environment variable is not set")
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+dagshub_url = "https://dagshub.com"
+repo_owner = "bhauryal7"
+repo_name = "Multiclass-Text-Classification"
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+# -------------------------------------------------------------------------------------
 
 
 # Initialize Flask app
