@@ -29,6 +29,6 @@ jobs:
 
       - name: run pipeline
         env:
-          TEXTCLASSIFY_FOOD: ${{ secrets.TEXTCLASSIFY_FOOD }}
+          text-classify-food: ${{ secrets.TEXTCLASSIFY_FOOD }}
         run: |
           dvc repro
