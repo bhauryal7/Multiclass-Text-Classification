@@ -5,6 +5,8 @@ on: push
 jobs:
   project-testing:
     runs-on: ubuntu-latest
+    env:
+      text-classify-food: ${{ secrets.TEXTCLASSIFY_FOOD }}
 
     steps:
       - name: checkout code
@@ -28,7 +30,5 @@ jobs:
           pip install -r requirements.txt
 
       - name: run pipeline
-        env:
-          text-classify-food: ${{ secrets.TEXTCLASSIFY_FOOD }}
         run: |
           dvc repro
