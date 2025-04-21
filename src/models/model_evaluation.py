@@ -16,6 +16,7 @@ from src.logger import logging
 # Set up DagsHub credentials for MLflow tracking
 dagshub_token = os.getenv("text-classify-food")
 if not dagshub_token:
+    print("ENV:", os.getenv("text-classify-food"))
     raise EnvironmentError("text-classify-food environment variable is not set")
 
 os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
