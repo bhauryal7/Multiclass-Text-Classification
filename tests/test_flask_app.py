@@ -25,7 +25,7 @@ class FlaskAppTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         
         self.assertTrue(
-            any(label in response.data for label in self.expected_classes),
+            any(label.encode() in response.data for label in self.expected_classes),
             "Response should contain one of the expected classes." 
         )
 

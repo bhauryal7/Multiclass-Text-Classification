@@ -70,27 +70,27 @@ def normalize_text(text):
     return text
 
 # Below code block is for local use
-# # -------------------------------------------------------------------------------------
-# mlflow.set_tracking_uri('https://dagshub.com/bhauryal7/Multiclass-Text-Classification.mlflow')
-# dagshub.init(repo_owner='bhauryal7', repo_name='Multiclass-Text-Classification', mlflow=True)
-# # -------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------
+mlflow.set_tracking_uri('https://dagshub.com/bhauryal7/Multiclass-Text-Classification.mlflow')
+dagshub.init(repo_owner='bhauryal7', repo_name='Multiclass-Text-Classification', mlflow=True)
+# -------------------------------------------------------------------------------------
 
 # Below code block is for production use
-# -------------------------------------------------------------------------------------
-# Set up DagsHub credentials for MLflow tracking
-dagshub_token = os.getenv("textclassify_food")
-if not dagshub_token:
-    raise EnvironmentError("textclassify_food environment variable is not set")
+# # -------------------------------------------------------------------------------------
+# # Set up DagsHub credentials for MLflow tracking
+# dagshub_token = os.getenv("textclassify_food")
+# if not dagshub_token:
+#     raise EnvironmentError("textclassify_food environment variable is not set")
 
-os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
-os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+# os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+# os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 
-dagshub_url = "https://dagshub.com"
-repo_owner = "bhauryal7"
-repo_name = "Multiclass-Text-Classification"
-# Set up MLflow tracking URI
-mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
-# -------------------------------------------------------------------------------------
+# dagshub_url = "https://dagshub.com"
+# repo_owner = "bhauryal7"
+# repo_name = "Multiclass-Text-Classification"
+# # Set up MLflow tracking URI
+# mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+# # -------------------------------------------------------------------------------------
 
 
 # Initialize Flask app
@@ -115,7 +115,7 @@ PREDICTION_COUNT = Counter(
 model_name = "my_model"
 def get_latest_model_version(model_name):
     client = mlflow.MlflowClient()
-    latest_version = client.get_latest_versions(model_name, stages=["Staging"])
+    latest_version = client.get_latest_versions(model_name, stages=["Production"])
     if not latest_version:
         latest_version = client.get_latest_versions(model_name, stages=["None"])
     return latest_version[0].version if latest_version else None
@@ -124,9 +124,8 @@ model_version = get_latest_model_version(model_name)
 model_uri = f'models:/{model_name}/{model_version}'
 print(f"Fetching model from: {model_uri}")
 model = mlflow.pyfunc.load_model(model_uri)
-vectorizer = pickle.load(open('models/vectorizer.pkl', 'rb'))
 
-# Load the fitted LabelEncoder
+vectorizer = joblib.load('models/vectorizer.pkl')
 label_encoder = joblib.load('models/label_encoder.pkl')
 
 # Routes
@@ -152,11 +151,17 @@ def predict():
     # Clean text
     text = normalize_text(text)
 
-    # Convert to features
-    features = vectorizer.transform([text])
+    try:
+        features = vectorizer.transform([text])
+    except Exception as e:
+        return render_template("index.html", result=f"Vectorizer error: {str(e)}")
 
     # Predict
-    result = model.predict(features)
+    try:
+        result = model.predict(features)
+    except Exception as e:
+        return render_template("index.html", result=f"Model prediction error: {str(e)}")
+    
     prediction_index = result[0]
 
     # Create a reverse mapping from numeric label to category name
@@ -180,4 +185,4 @@ def metrics():
 
 if __name__ == "__main__":
     # app.run(debug=True) # for local use
-    app.run(debug=True, host="0.0.0.0", port=5000)  # Accessible from outside Docker
+    app.run(debug=True, host="0.0.0.0", port=5001)  # Accessible from outside Docker
