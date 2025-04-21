@@ -78,9 +78,9 @@ def normalize_text(text):
 # Below code block is for production use
 # -------------------------------------------------------------------------------------
 # Set up DagsHub credentials for MLflow tracking
-dagshub_token = os.getenv("text-classify-food")
+dagshub_token = os.getenv("textclassify_food")
 if not dagshub_token:
-    raise EnvironmentError("text-classify-food environment variable is not set")
+    raise EnvironmentError("textclassify_food environment variable is not set")
 
 os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
 os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
@@ -180,4 +180,4 @@ def metrics():
 
 if __name__ == "__main__":
     # app.run(debug=True) # for local use
-    app.run(debug=True, host="0.0.0.0", port=5001)  # Accessible from outside Docker
+    app.run(debug=True, host="0.0.0.0", port=5000)  # Accessible from outside Docker
