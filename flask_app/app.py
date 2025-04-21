@@ -70,27 +70,27 @@ def normalize_text(text):
     return text
 
 # Below code block is for local use
-# -------------------------------------------------------------------------------------
-mlflow.set_tracking_uri('https://dagshub.com/bhauryal7/Multiclass-Text-Classification.mlflow')
-dagshub.init(repo_owner='bhauryal7', repo_name='Multiclass-Text-Classification', mlflow=True)
-# -------------------------------------------------------------------------------------
+# # -------------------------------------------------------------------------------------
+# mlflow.set_tracking_uri('https://dagshub.com/bhauryal7/Multiclass-Text-Classification.mlflow')
+# dagshub.init(repo_owner='bhauryal7', repo_name='Multiclass-Text-Classification', mlflow=True)
+# # -------------------------------------------------------------------------------------
 
 # Below code block is for production use
-# # -------------------------------------------------------------------------------------
-# # Set up DagsHub credentials for MLflow tracking
-# dagshub_token = os.getenv("textclassify_food")
-# if not dagshub_token:
-#     raise EnvironmentError("textclassify_food environment variable is not set")
+# -------------------------------------------------------------------------------------
+# Set up DagsHub credentials for MLflow tracking
+dagshub_token = os.getenv("textclassify_food")
+if not dagshub_token:
+    raise EnvironmentError("textclassify_food environment variable is not set")
 
-# os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
-# os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 
-# dagshub_url = "https://dagshub.com"
-# repo_owner = "bhauryal7"
-# repo_name = "Multiclass-Text-Classification"
-# # Set up MLflow tracking URI
-# mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
-# # -------------------------------------------------------------------------------------
+dagshub_url = "https://dagshub.com"
+repo_owner = "bhauryal7"
+repo_name = "Multiclass-Text-Classification"
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+# -------------------------------------------------------------------------------------
 
 
 # Initialize Flask app
