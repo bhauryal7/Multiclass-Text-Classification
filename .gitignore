@@ -89,7 +89,7 @@ target/
 .mypy_cache/
 
 # Data-reduced.xlsx
-data.csv
+# data.csv
 local_s3/
 /models/
 cred.txt
