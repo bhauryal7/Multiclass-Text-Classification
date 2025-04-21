@@ -32,3 +32,21 @@ jobs:
           textclassify_food: ${{ secrets.TEXTCLASSIFY_FOOD }}
         run: |
           dvc repro
+
+      - name: Run model tests
+        env:
+          textclassify_food: ${{ secrets.TEXTCLASSIFY_FOOD }}
+        run: |
+          python -m unittest tests/test_model.py
+
+      - name: Promote model to production
+        if: success()
+        env:
+          textclassify_food: ${{ secrets.TEXTCLASSIFY_FOOD }}
+        run: python scripts/promote_model.py
+
+      - name: Run Flask app tests
+        if: success()
+        env:
+          textclassify_food: ${{ secrets.TEXTCLASSIFY_FOOD }}
+        run: python -m unittest tests/test_flask_app.py    

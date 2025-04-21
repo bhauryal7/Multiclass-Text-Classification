@@ -17,7 +17,6 @@ from src.logger import logging
 dagshub_token = os.getenv("textclassify_food")
 if not dagshub_token:
     raise EnvironmentError("textclassify_food environment variable is NOT set")
-    print("textclassify_food:", os.getenv("textclassify_food"))
 
 os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
 os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token

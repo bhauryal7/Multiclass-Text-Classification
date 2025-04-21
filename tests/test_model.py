@@ -12,9 +12,9 @@ class TestModelLoading(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # Set up DagsHub credentials for MLflow tracking
-        dagshub_token = os.getenv("text-classify-food")
+        dagshub_token = os.getenv("textclassify_food")
         if not dagshub_token:
-            raise EnvironmentError("text-classify-food environment variable is not set")
+            raise EnvironmentError("textclassify_food environment variable is not set")
 
         os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
         os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
@@ -36,7 +36,7 @@ class TestModelLoading(unittest.TestCase):
         cls.vectorizer = pickle.load(open('models/vectorizer.pkl', 'rb'))
 
         # Load holdout test data
-        cls.holdout_data = pd.read_csv('data/processed/test_bow.csv')
+        cls.holdout_data = pd.read_csv('data/processed/test_tfidf.csv')
 
     @staticmethod
     def get_latest_model_version(model_name, stage="Staging"):
@@ -49,7 +49,7 @@ class TestModelLoading(unittest.TestCase):
 
     def test_model_signature(self):
         # Create a dummy input for the model based on expected input shape
-        input_text = "hi how are you"
+        input_text = "Milkshake chocolate"
         input_data = self.vectorizer.transform([input_text])
         input_df = pd.DataFrame(input_data.toarray(), columns=[str(i) for i in range(input_data.shape[1])])
 
@@ -73,9 +73,9 @@ class TestModelLoading(unittest.TestCase):
 
         # Calculate performance metrics for the new model
         accuracy_new = accuracy_score(y_holdout, y_pred_new)
-        precision_new = precision_score(y_holdout, y_pred_new)
-        recall_new = recall_score(y_holdout, y_pred_new)
-        f1_new = f1_score(y_holdout, y_pred_new)
+        precision_new = precision_score(y_holdout, y_pred_new,average='weighted')
+        recall_new = recall_score(y_holdout, y_pred_new,average='weighted')
+        f1_new = f1_score(y_holdout, y_pred_new,average='weighted')
 
         # Define expected thresholds for the performance metrics
         expected_accuracy = 0.40

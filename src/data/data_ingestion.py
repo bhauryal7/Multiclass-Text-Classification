@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 pd.set_option('future.no_silent_downcasting', True)
 import joblib
-
+import json
 import os
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
@@ -51,6 +51,13 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
         logging.info("pre-processing...")
         df["Herstellung"] = label_encoder.fit_transform(df["Herstellung"])    
         logging.info('Data preprocessing completed')
+
+        # Save label classes
+        os.makedirs("artifacts", exist_ok=True)
+        with open("artifacts/label_classes.json", "w") as f:
+            json.dump(list(label_encoder.classes_), f)
+        logging.info("Label classes saved to artifacts/label_classes.json")
+
         return df
     except KeyError as e:
         logging.error('Missing column in the dataframe: %s', e)
@@ -88,6 +95,7 @@ def main():
         save_data(train_data, test_data, data_path='./data')
         # Save the label_encoder to a file
         joblib.dump(label_encoder, 'models/label_encoder.pkl')  # Save to a file
+
     except Exception as e:
         logging.error('Failed to complete the data ingestion process: %s', e)
         print(f"Error: {e}")
