@@ -14,10 +14,10 @@ from src.logger import logging
 # Below code block is for production use
 # -------------------------------------------------------------------------------------
 # Set up DagsHub credentials for MLflow tracking
-dagshub_token = os.getenv("TEXTCLASSIFY_FOOD")
+dagshub_token = os.getenv("text-classify-food")
 if not dagshub_token:
-    print("ENV:", os.getenv("TEXTCLASSIFY_FOOD"))
-    raise EnvironmentError("TEXTCLASSIFY_FOOD environment variable is not set")
+    print("ENV:", os.getenv("text-classify-food"))
+    raise EnvironmentError("text-classify-food environment variable is not set")
 
 os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
 os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
@@ -113,7 +113,7 @@ def main():
     with mlflow.start_run() as run:  # Start an MLflow run
         try:
             clf = load_model('./models/model.pkl')
-            test_data = load_data('./data/processed/test_bow.csv')
+            test_data = load_data('./data/processed/test_tfidf.csv')
             
             X_test = test_data.iloc[:, :-1].values
             y_test = test_data.iloc[:, -1].values
