@@ -14,9 +14,9 @@ warnings.filterwarnings("ignore")
 # Below code block is for production use
 # -------------------------------------------------------------------------------------
 # Set up DagsHub credentials for MLflow tracking
-dagshub_token = os.getenv("text-classify-food")
+dagshub_token = os.getenv("TEXTCLASSIFY_FOOD")
 if not dagshub_token:
-    raise EnvironmentError("text-classify-food environment variable is not set")
+    raise EnvironmentError("TEXTCLASSIFY_FOOD environment variable is not set")
 
 os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
 os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token

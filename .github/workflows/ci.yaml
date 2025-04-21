@@ -6,7 +6,7 @@ jobs:
   project-testing:
     runs-on: ubuntu-latest
     env:
-      text-classify-food: ${{ secrets.TEXTCLASSIFY_FOOD }}
+      TEXTCLASSIFY_FOOD: ${{ secrets.TEXTCLASSIFY_FOOD }}
 
     steps:
       - name: checkout code

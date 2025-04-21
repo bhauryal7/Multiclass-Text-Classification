@@ -46,8 +46,6 @@ stages:
     - reports/metrics.json
     outs:
     - reports/experiment_info.json  # Add the model_info.json file as an output
-    env:
-    - text-classify-food
 
 
   model_registration:
