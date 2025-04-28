@@ -53,11 +53,6 @@ def removing_urls(text):
     url_pattern = re.compile(r'https?://\S+|www\.\S+')
     return url_pattern.sub(r'', text)
 
-# def remove_small_sentences(df):
-    """Remove sentences with less than 3 words."""
-    for i in range(len(df)):
-        if len(df.text.iloc[i].split()) < 3:
-            df.text.iloc[i] = np.nan
 
 def normalize_text(text):
     text = lower_case(text)
@@ -125,7 +120,7 @@ model_uri = f'models:/{model_name}/{model_version}'
 print(f"Fetching model from: {model_uri}")
 model = mlflow.pyfunc.load_model(model_uri)
 
-vectorizer = joblib.load('models/vectorizer.pkl')
+vectorizer = pickle.load(open('models/vectorizer.pkl','rb'))
 label_encoder = joblib.load('models/label_encoder.pkl')
 
 # Routes

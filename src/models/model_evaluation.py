@@ -14,6 +14,7 @@ from src.logger import logging
 # Below code block is for production use
 # -------------------------------------------------------------------------------------
 # Set up DagsHub credentials for MLflow tracking
+
 dagshub_token = os.getenv("textclassify_food")
 if not dagshub_token:
     raise EnvironmentError("textclassify_food environment variable is NOT set")
@@ -67,7 +68,7 @@ def evaluate_model(clf, X_test: np.ndarray, y_test: np.ndarray) -> dict:
     """Evaluate the model and return the evaluation metrics."""
     try:
         y_pred = clf.predict(X_test)
-        y_pred_proba = clf.predict_proba(X_test)
+        #y_pred_proba = clf.predict_proba(X_test)
 
         accuracy = accuracy_score(y_test, y_pred)
         precision = precision_score(y_test, y_pred,average='weighted')
