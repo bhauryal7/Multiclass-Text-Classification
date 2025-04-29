@@ -17,7 +17,7 @@ This project focuses on building a multiclass text calssification model using tr
 - Performance evaluation (accuracy, F1-score, confusion matrix)
 - Simple Flask-based API for serving predictions
 - MLFlow for data versioning and trackign experiments
-- CI pipeline using GitHub Actions for automated testing and deployment
+- CI pipeline using GitHub Actions for automated testing
 
 # Results:
 The results of each model on the dataset are as follows:
