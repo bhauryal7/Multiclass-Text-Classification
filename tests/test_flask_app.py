@@ -14,7 +14,7 @@ class FlaskAppTests(unittest.TestCase):
     def test_home_page(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'<title>Text Classification</title>', response.data)
+        self.assertIn(b'<title>Item Category Classifier</title>', response.data)
 
     def test_predict_page(self):
         sample_text = "Alpro Joghurt Strawberry"
