@@ -16,7 +16,8 @@ This project focuses on building a multiclass text calssification model using tr
 - Model training using classical ML models (e.g., Logistic Regression, Naive Bayes)
 - Performance evaluation (accuracy, F1-score, confusion matrix)
 - Simple Flask-based API for serving predictions
-- CI/CD pipeline using GitHub Actions for automated testing and deployment
+- MLFlow for data versioning and trackign experiments
+- CI pipeline using GitHub Actions for automated testing and deployment
 
 # Results:
 The results of each model on the dataset are as follows:
