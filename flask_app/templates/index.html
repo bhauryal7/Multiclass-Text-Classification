@@ -3,82 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentiment Analysis</title>
+    <title>Item Category Classifier</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f5;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
         }
+
         .container {
-            max-width: 500px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px 40px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
         }
+
         h1 {
-            color: #333;
+            color: #2c3e50;
+            margin-bottom: 10px;
         }
+
+        p.subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
         textarea {
             width: 100%;
-            padding: 10px;
+            height: 120px;
+            padding: 12px;
+            font-size: 16px;
             border: 1px solid #ccc;
-            border-radius: 5px;
-            resize: none;
-            font-size: 16px;
+            border-radius: 8px;
+            resize: vertical;
         }
+
         button {
-            background-color: #4CAF50;
+            background-color: #3498db;
             color: white;
-            border: none;
             padding: 12px 20px;
-            margin-top: 10px;
-            cursor: pointer;
-            border-radius: 5px;
+            border: none;
+            border-radius: 8px;
             font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
         }
+
         button:hover {
-            background-color: #45a049;
+            background-color: #2980b9;
         }
+
         .result {
-            margin-top: 20px;
-            font-size: 22px;
-            font-weight: bold;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .positive {
-            color: #155724;
-            background-color: #d4edda;
-            border: 1px solid #c3e6cb;
-        }
-        .negative {
-            color: #721c24;
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
+            margin-top: 30px;
+            font-size: 18px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            border: 1px solid #bdc3c7;
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h1>Items prediction</h1>
+        <h1>Item Category Predictor</h1>
+        <p class="subtitle">Write your item description below and we'll classify it into the right category.</p>
         <form action="/predict" method="POST">
-            <label for="text">Write text:</label><br>
-            <textarea id="text" name="text" rows="5" placeholder="Enter your text item"></textarea><br>
-            <button type="submit">Predict</button>
+            <textarea id="text" name="text" placeholder="e.g., Alufolien-Rolle Gastronom 45 cm x 130 m 1 x 1 Stück"></textarea><br>
+            <button type="submit">Classify</button>
         </form>
 
         {% if result is not none %}
             <div class="result">
-                <h2>Predicted Category:</h2>
-                <p>{{ result }}</p>
+                <strong>Predicted Category:</strong><br>
+                {{ result }}
             </div>
         {% endif %}
     </div>
-
 </body>
 </html>

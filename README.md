@@ -1,28 +1,33 @@
-# Multiclass Text Classification with Machine Learning Models
+# Multiclass Text Classification for German Food Product Descriptions
 
-This repository contains python code in two jupyter notebooks for classifying text data using various machine (and deep) learning models. The goal is to automate the process of item categorization.
- 
-# Requirements:
+This project focuses on building a multiclass text calssification model using traditional machine learning techniques to classify food product descriptions into multiple predefined categories. 
 
-* NumPy
-* Pandas
-* NLTK
-* scikit-learn
-* Tensorflow
+# Project Overview
 
-# Dataset:
-The dataset contains a list of around 42,000 food and non-food items, categorized into more than 300 labels. The excel file contains the data and the list of items is in the column 'DESCRIPTION', which is in German, while the corresponding categories are stored in the column 'Herstellung'. The dataset used in this project is provided by Carbotech.
+- **Input:** Short product descriptions in German (max ~20 words).
+- **Output:** Predicted category label from multiple classes (~350).
+- **Tech Stack:** Python, Scikit-learn, Numpy, Pandas, Flask, GitHub Actions
+
+
+# Features
+
+- Preprocessing of text data
+- TF-IDF feature extraction
+- Model training using classical ML models (e.g., Logistic Regression, Naive Bayes)
+- Performance evaluation (accuracy, F1-score, confusion matrix)
+- Simple Flask-based API for serving predictions
+- CI/CD pipeline using GitHub Actions for automated testing and deployment
 
 # Results:
 The results of each model on the dataset are as follows:
 
 |  Model | Accuracy |
 |----------|----------|
-| Logistic Regression | 80.52% |
+| Logistic Regression | 80.76% |
 | Support Vector Machine | 79.73% |
 | Multinomial Naive Bayes | 78.25% |
 | Stochastic Gradient Descent | 79.11% |
-| Randomforest | 73.7% |
+| Randomforest | 73.8% |
 | XGBoost | 65.78% |
 | RNN | 62.3% |
 | GRU | 62.3% |
@@ -31,3 +36,7 @@ The results of each model on the dataset are as follows:
 # Future Improvements
 
 - Experiment with a BERT-based model for potentially better perfromance.
+
+# Demo
+
+![Flask App Screenshot](./images/flask_app.png)
