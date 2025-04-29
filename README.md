@@ -35,8 +35,8 @@ The results of each model on the dataset are as follows:
 | LSTM | 72% |
 
 # Future Improvements
-
-- Experiment with a BERT-based model for potentially better perfromance.
+- Including CD pipeline and monitoring
+- Experiment with a BERT-based model for potentially better perfromance
 
 # Demo
 
