@@ -14,10 +14,13 @@ This project focuses on building a multiclass text calssification model using tr
 - Preprocessing of text data
 - TF-IDF feature extraction
 - Model training using classical ML models (e.g., Logistic Regression, Naive Bayes)
-- Performance evaluation (accuracy, F1-score, confusion matrix)
+- Performance evaluation (accuracy, precision, recall)
+- MLFlow for data versioning and experiment tracking
+- DVC (Data Version Control) for managing datasets and ML pipeline stages
 - Simple Flask-based API for serving predictions
-- MLFlow for data versioning and trackign experiments
-- CI pipeline using GitHub Actions for automated testing
+- Docker for containerizing the application
+- CI/CD pipeline using GitHub Actions for automated testing and deployment to AWS ECR
+
 
 # Results:
 The results of each model on the dataset are as follows:
@@ -35,7 +38,7 @@ The results of each model on the dataset are as follows:
 | LSTM | 72% |
 
 # Future Improvements
-- Including CD pipeline and monitoring
+- Include monitoring
 - Experiment with a BERT-based model for potentially better perfromance
 
 # Demo

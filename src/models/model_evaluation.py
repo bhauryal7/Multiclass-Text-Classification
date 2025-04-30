@@ -12,7 +12,7 @@ from src.logger import logging
 
 
 #Below code block is for production use
--------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------
 # Set up DagsHub credentials for MLflow tracking
 
 dagshub_token = os.getenv("textclassify_food")
