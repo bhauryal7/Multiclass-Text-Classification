@@ -11,8 +11,8 @@ import os
 from src.logger import logging
 
 
-# Below code block is for production use
-# -------------------------------------------------------------------------------------
+#Below code block is for production use
+-------------------------------------------------------------------------------------
 # Set up DagsHub credentials for MLflow tracking
 
 dagshub_token = os.getenv("textclassify_food")
@@ -30,7 +30,7 @@ repo_name = "Multiclass-Text-Classification"
 mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
 # # -------------------------------------------------------------------------------------
 
-#Below code block is for local use
+# Below code block is for local use
 # ------------------------------------------------------------------------------------------      
 # mlflow.set_tracking_uri('https://dagshub.com/bhauryal7/Multiclass-Text-Classification.mlflow')
 # dagshub.init(repo_owner='bhauryal7', repo_name='Multiclass-Text-Classification', mlflow=True)

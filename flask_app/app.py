@@ -64,7 +64,7 @@ def normalize_text(text):
 
     return text
 
-# Below code block is for local use
+# # Below code block is for local use
 # # -------------------------------------------------------------------------------------
 # mlflow.set_tracking_uri('https://dagshub.com/bhauryal7/Multiclass-Text-Classification.mlflow')
 # dagshub.init(repo_owner='bhauryal7', repo_name='Multiclass-Text-Classification', mlflow=True)
@@ -180,4 +180,4 @@ def metrics():
 
 if __name__ == "__main__":
     # app.run(debug=True) # for local use
-    app.run(debug=True, host="0.0.0.0", port=5001)  # Accessible from outside Docker
+    app.run(debug=True, host="0.0.0.0", port=8000)  # Accessible from outside Docker
