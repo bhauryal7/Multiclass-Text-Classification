@@ -43,6 +43,6 @@ The results of each model on the dataset are as follows:
 
 # Demo
 
-Check out the live demo: [Item category predictor](https://multiclass-text-classification.onrender.com/predict)
+Check out the live demo: [Item category predictor](https://multiclass-text-classification.onrender.com/)
 
 ![Flask App Screenshot](./images/flask_app.png) 
